@@ -91,7 +91,7 @@ namespace StrUtil
 	{
 		vector<string> result;
 		const char* ps = s.c_str();
-		auto& IsDelimiter = [&delimiters](const char c)
+		auto IsDelimiter = [&delimiters](const char c)
 		{
 			return std::find(delimiters.begin(), delimiters.end(), c) != delimiters.end();
 		};

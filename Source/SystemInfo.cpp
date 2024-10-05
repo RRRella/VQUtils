@@ -577,7 +577,7 @@ std::vector<FMonitorInfo> GetDisplayInfo()
 			pOutput->QueryInterface(IID_PPV_ARGS(&pOut)); 
 			pOut->GetDesc1(&desc);
 
-			FMonitorInfo& i = [](const DXGI_OUTPUT_DESC1& desc, const std::vector<FMonitorInfo>& monitors)
+			FMonitorInfo i = [](const DXGI_OUTPUT_DESC1& desc, const std::vector<FMonitorInfo>& monitors)
 			{
 				for (int i = 0; i < monitors.size(); ++i)
 				{
@@ -600,7 +600,7 @@ std::vector<FMonitorInfo> GetDisplayInfo()
 			i.LogicalDeviceName = StrUtil::UnicodeToASCII(desc.DeviceName);
 			if constexpr (DISPLAY_DEVICE_NAME__READ_REGISTRY)
 			{
-				constexpr char* DISPLAY_NAME_ENUMS_REGISTRY_PATH_FROM_HKEY_LOCAL_MACHINE = "SYSTEM\\CurrentControlSet\\Enum\\DISPLAY";
+				constexpr const char* DISPLAY_NAME_ENUMS_REGISTRY_PATH_FROM_HKEY_LOCAL_MACHINE = "SYSTEM\\CurrentControlSet\\Enum\\DISPLAY";
 				// Here in the registry root, we'll see part of device.DisplayID as folders, e.g.
 				// DisplayID is generated per driver version, and look like: MONITOR\\ACR0414\\<driver hash>
 				// Hence, we'll see monitor identifiers as folders like:
